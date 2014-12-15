@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Type" content="text/html; charset=shift-jis">
+<title>InsertParser</title>
+<link rel="stylesheet" type="text/css" href="tw/css/bootstrap.css" />
+<script type="text/javascript" src="tw/js/bootstrap.js"></script>
+</head>
+</head>
+<body>
+<div class="offset3 span6 offset3" style="margin-top:20px;">
+	<form class="form-search" action="<!--{$smarty.server.PHP_SELF|escape}-->" method="post" name="form1">
+		<div class="clearfix">
+			<label for="prependedInput">format:[INSERT INTO <i>table</i>] (col1 [,col2 [,col...]]) [VALUES] (val1 [,val2 [,val...]])</label>
+			<div class="input">
+				<div class="input-prepend">
+					<span class="add-on">SQL</span><input type="text" name="sql" value="<!--{$data.sql}-->" id="prependedInput" class="medium"  />
+				</div>
+				<input type="hidden" name="mode" value="check" />
+				<input type="submit" class="btn btn-info" value="表示" />
+				<span style="color:red;"><!--{$arrErr.sql}--></span>
+			</div>
+		</div>
+	</form>
+	
+	<!--{if $arrList|@count > 0}-->
+		<table class="table table-striped table-bordered table-condensed" width="600">
+		<thead>
+			<tr>
+				<td width="300">col</td>
+				<td width="300">val</td>
+			</tr>
+		</thead>
+		<!--{foreach from=$arrList key=key item=val}-->
+		<tbody>
+			<tr>
+				<td><!--{$key}--></td>
+				<td><!--{$val}--></td>
+			</tr>
+		</tbody>
+		<!--{/foreach}-->
+		</table>
+	<!--{/if}-->
+</div>
+</body>
+</html>

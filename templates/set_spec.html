@@ -1,0 +1,473 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Type" content="text/html; charset=shift-jis">
+<title>BBシミュレートver1.00-α(mobile)</title>
+<style type="text/css">
+<!--
+.small{
+	font-size: 10px;
+}
+//-->
+</style>
+</head>
+<body style="font-size:small;">
+<!--{if $data.url != ''}-->
+このページのURL<br />
+<input type="text" size="25" name="disp_url" value="<!--{$data.url}-->" /><br />
+<!--{/if}-->
+<a href="#user_select_space">入力へ</a>
+<table width="240" border="0" cellpadding="0" cellspacing="0" summary="specs">
+	<tr align="center">
+		<td colspan="4" bgcolor="#AAAAAA" width="240">
+			機体データ&nbsp;@<!--{$data.at_parts}-->&nbsp;超過<!--{$data.down_parts|default:0}-->%
+		</td>
+	</tr>
+	<tr align="center">
+		<th colspan="2" bgcolor="#DDDDDD">
+			装甲平均
+		</th>
+		<td colspan="2" bgcolor="#FFFFFF">
+			<!--{$data.armer_avg}-->%
+		</td>
+	</tr>
+	<tr align="center">
+		<th colspan="2" bgcolor="#DDDDDD">
+			ﾁｯﾌﾟ数
+		</th>
+		<td colspan="2" bgcolor="#FFFFFF">
+			<!--{$data.total_chip}-->/<!--{$data.chip}-->
+		</td>
+	</tr>
+	<tr align="center">
+		<th colspan="2" bgcolor="#DDDDDD">
+			ﾎﾞｰﾅｽ
+		</th>
+		<td colspan="2" bgcolor="#FFFFFF">
+			<!--{$data.bonus|default:'なし'}-->
+		</td>
+	</tr>
+	<tr align="center">
+		<th colspan="4" bgcolor="#BBBBBB">
+			装着チップ
+		</th>
+	</tr>
+	<tr align="center">
+		<td bgcolor="#DDDDDD">装甲</td>
+		<td bgcolor="#DDDDDD">射補</td>
+		<td bgcolor="#DDDDDD">ＳＰ</td>
+		<td bgcolor="#DDDDDD">武変</td>
+	</tr>
+	<tr align="center">
+		<td>
+			<!--{if $data.armer_chip}-->
+				コスト<!--{$data.armer_chip}-->
+			<!--{else}-->
+				なし
+			<!--{/if}-->
+		</td>
+		<td>
+			<!--{if $data.revision_chip}-->
+				コスト<!--{$data.revision_chip}-->
+			<!--{else}-->
+				なし
+			<!--{/if}-->
+		</td>
+		<td>
+			<!--{if $data.sp_chip}-->
+				コスト<!--{$data.sp_chip}-->
+			<!--{else}-->
+				なし
+			<!--{/if}-->
+		</td>
+		<td>
+			<!--{if $data.change_chip}-->
+				コスト<!--{$data.change_chip}-->
+			<!--{else}-->
+				なし
+			<!--{/if}-->
+		</td>
+	</tr>
+	<tr align="center">
+		<td bgcolor="#DDDDDD">重耐</td>
+		<td bgcolor="#DDDDDD">&nbsp;</td>
+		<td bgcolor="#DDDDDD">&nbsp;</td>
+		<td bgcolor="#DDDDDD">&nbsp;</td>
+	</tr>
+	<tr align="center">
+		<td>
+			<!--{if $data.weight_chip}-->
+				コスト<!--{$data.weight_chip}-->
+			<!--{else}-->
+				なし
+			<!--{/if}-->
+		</td>
+		<td bgcolor="#DDDDDD">&nbsp;</td>
+		<td bgcolor="#DDDDDD">&nbsp;</td>
+		<td bgcolor="#DDDDDD">&nbsp;</td>
+	</tr>
+	<tr align="center">
+		<td colspan="2" bgcolor="#BBBBBB" width="120">
+			頭<br /><!--{$arrHeadSelect[$data.head]}-->
+		</td>
+		<td colspan="2" bgcolor="#BBBBBB" width="120">
+			胴<br /><!--{$arrBodySelect[$data.body]}-->
+		</td>
+	</tr>
+	<tr align="center" bgcolor="#DDDDDD">
+		<th width="60">装甲</th>
+		<th width="60">射補</th>
+		<th width="60">装甲</th>
+		<th width="60">ﾌﾞｰｽﾄ</th>
+	</tr>
+	<tr align="center" bgcolor="#DDDDDD">
+		<td width="30" bgcolor="<!--{$data.head0_color}-->"><!--{$data.head0_rank}--></td>
+		<td width="30" bgcolor="<!--{$data.head1_color}-->"><!--{$data.head1_rank}--></td>
+		<td width="30" bgcolor="<!--{$data.body0_color}-->"><!--{$data.body0_rank}--></td>
+		<td width="30" bgcolor="<!--{$data.body1_color}-->"><!--{$data.body1_rank}--></td>
+	</tr>
+	<tr align="center" bgcolor="#DDDDDD">
+		<td width="30" bgcolor="<!--{$data.head0_color}-->"><!--{$data.head0}-->%</td>
+		<td width="30" bgcolor="<!--{$data.head1_color}-->"><!--{$data.head1}-->%</td>
+		<td width="30" bgcolor="<!--{$data.body0_color}-->"><!--{$data.body0}-->%</td>
+		<td width="30" bgcolor="<!--{$data.body1_color}-->"><!--{$data.body1}-->回</td>
+	</tr>
+	<tr align="center" bgcolor="#DDDDDD">
+		<th>索敵</th>
+		<th>ﾛｯｸ</th>
+		<th>ＳＰ</th>
+		<th>ｴﾘﾁｪﾝ</th>
+	</tr>
+	<tr align="center" bgcolor="#DDDDDD">
+		<td bgcolor="<!--{$data.head2_color}-->"><!--{$data.head2_rank}--></td>
+		<td bgcolor="<!--{$data.head3_color}-->"><!--{$data.head3_rank}--></td>
+		<td bgcolor="<!--{$data.body2_color}-->"><!--{$data.body2_rank}--></td>
+		<td bgcolor="<!--{$data.body3_color}-->"><!--{$data.body3_rank}--></td>
+	</tr>
+	<tr align="center" bgcolor="#DDDDDD">
+		<td bgcolor="<!--{$data.head2_color}-->"><!--{$data.head2}-->m</td>
+		<td bgcolor="<!--{$data.head3_color}-->"><!--{$data.head3}-->m</td>
+		<td bgcolor="<!--{$data.body2_color}-->"><!--{$data.body2}-->%</td>
+		<td bgcolor="<!--{$data.body3_color}-->"><!--{$data.body3}-->秒</td>
+	</tr>
+	<tr align="center">
+		<td colspan="2" bgcolor="#BBBBBB" width="120">
+			腕<br /><!--{$arrArmSelect[$data.arm]}-->
+		</td>
+		<td colspan="2" bgcolor="#BBBBBB" width="120">
+			脚<br /><!--{$arrLegSelect[$data.leg]}-->
+		</td>
+	</tr>
+	<tr align="center" bgcolor="#DDDDDD">
+		<th width="60">装甲</th>
+		<th width="60">反動</th>
+		<th width="60">装甲</th>
+		<th width="60">歩行</th>
+	</tr>
+	<tr align="center" bgcolor="#DDDDDD">
+		<td width="30" bgcolor="<!--{$data.arm0_color}-->"><!--{$data.arm0_rank}--></td>
+		<td width="30" bgcolor="<!--{$data.arm1_color}-->"><!--{$data.arm1_rank}--></td>
+		<td width="30" bgcolor="<!--{$data.leg0_color}-->"><!--{$data.leg0_rank}--></td>
+		<td width="30" bgcolor="<!--{$data.leg1_color}-->"><!--{$data.leg1_rank}--></td>
+	</tr>
+	<tr align="center" bgcolor="#DDDDDD">
+		<td width="30" bgcolor="<!--{$data.arm0_color}-->"><!--{$data.arm0}-->%</td>
+		<td width="30" bgcolor="<!--{$data.arm1_color}-->"><!--{$data.arm1}-->%</td>
+		<td width="30" bgcolor="<!--{$data.leg0_color}-->"><!--{$data.leg0}-->%</td>
+		<td width="30" bgcolor="<!--{$data.leg1_color}-->"><!--{$data.leg1}-->m/s</td>
+	</tr>
+	<tr align="center" bgcolor="#DDDDDD">
+		<th>ﾘﾛｰﾄﾞ</th>
+		<th>武変</th>
+		<th>ﾀﾞｯｼｭ</th>
+		<th>重耐</th>
+	</tr>
+	<tr align="center" bgcolor="#DDDDDD">
+		<td bgcolor="<!--{$data.arm2_color}-->"><!--{$data.arm2_rank}--></td>
+		<td bgcolor="<!--{$data.arm3_color}-->"><!--{$data.arm3_rank}--></td>
+		<td bgcolor="<!--{$data.leg2_color}-->"><!--{$data.leg2_rank}--></td>
+		<td bgcolor="<!--{$data.leg3_color}-->"><!--{$data.leg3_rank}--></td>
+	</tr>
+	<tr align="center" bgcolor="#DDDDDD">
+		<td bgcolor="<!--{$data.arm2_color}-->"><!--{$data.arm2}-->%</td>
+		<td bgcolor="<!--{$data.arm3_color}-->"><!--{$data.arm3}-->%</td>
+		<td bgcolor="<!--{$data.leg2_color}-->"><!--{$data.leg2}-->m/s</td>
+		<td bgcolor="<!--{$data.leg3_color}-->"><!--{$data.leg3}--></td>
+	</tr>
+	<tr align="center" bgcolor="#66DD99">
+		<td colspan="4">麻&nbsp;@<!--{$data.at_assault}-->&nbsp;超過<!--{$data.down_assault}-->%</td>
+	</tr>
+	<tr align="center" bgcolor="#99FFCC">
+		<th colspan="2">ﾀﾞｯｼｭ</th>
+		<th colspan="2">巡航</th>
+	</tr>
+	<tr align="center" bgcolor="#99FFCC">
+		<td colspan="2"><!--{$data.speed_assault}-->m/s</td>
+		<td colspan="2"><!--{$data.speed_assault_ld}-->m/s</td>
+	</tr>
+	<tr align="center" bgcolor="#99FFCC">
+		<th>生AC</th>
+		<th>MW</th>
+		<th>箪笥</th>
+		<th>MW2</th>
+	</tr>
+	<tr align="center" bgcolor="#99FFCC">
+		<td><!--{$data.speed_assault_ac}-->m/s</td>
+		<td><!--{$data.speed_assault_mw}-->m/s</td>
+		<td><!--{$data.speed_assault_dis}-->m/s</td>
+		<td><!--{$data.speed_assault_mw2}-->m/s</td>
+	</tr>
+	<tr align="center" bgcolor="#FF66DD">
+		<td colspan="4">蛇&nbsp;@<!--{$data.at_heavy}-->&nbsp;超過<!--{$data.down_heavy}-->%</td>
+	</tr>
+	<tr align="center" bgcolor="#FF99FF">
+		<th colspan="2">ﾀﾞｯｼｭ</th>
+		<th colspan="2">巡航</th>
+	</tr>
+	<tr align="center" bgcolor="#FF99FF">
+		<td colspan="2"><!--{$data.speed_heavy}-->m/s</td>
+		<td colspan="2"><!--{$data.speed_heavy_ld}-->m/s</td>
+	</tr>
+	<tr align="center" bgcolor="#FFCC33">
+		<td colspan="4">砂&nbsp;@<!--{$data.at_snipe}-->&nbsp;超過<!--{$data.down_snipe}-->%</td>
+	</tr>
+	<tr align="center" bgcolor="#FFFF99">
+		<th colspan="2">ﾀﾞｯｼｭ</th>
+		<th colspan="2">巡航</th>
+	</tr>
+	<tr align="center" bgcolor="#FFFF99">
+		<td colspan="2"><!--{$data.speed_snipe}-->m/s</td>
+		<td colspan="2"><!--{$data.speed_snipe_ld}-->m/s</td>
+	</tr>
+	<tr align="center" bgcolor="#33CC99">
+		<td colspan="4">支&nbsp;@<!--{$data.at_support}-->&nbsp;超過<!--{$data.down_support}-->%</td>
+	</tr>
+	<tr align="center" bgcolor="#33FF99">
+		<th colspan="2">ﾀﾞｯｼｭ</th>
+		<th colspan="2">巡航</th>
+	</tr>
+	<tr align="center" bgcolor="#33FF99">
+		<td colspan="2"><!--{$data.speed_support}-->m/s</td>
+		<td colspan="2"><!--{$data.speed_support_ld}-->m/s</td>
+	</tr>
+</table>
+<!-- /TABLE specs -->
+<a name="user_select_space"></a>
+<br />
+<br />
+<form action="/set/set_mobile.php" method="post" name="form1">
+<!--{foreach from=$data key=key item=val}-->
+	<!--{if $key != 'mode'}-->
+	<input type="hidden" name="<!--{$key}-->" value="<!--{$val}-->" />
+	<!--{/if}-->
+<!--{/foreach}-->
+<table width="200" border="0" cellpadding="0" cellspacing="0" summary="user_select_space">
+	<!-- HEAD -->
+	<tr bgcolor="#BBBBBB">
+		<td width="40">
+			頭
+		</td>
+		<td width="160">
+			<!--{html_options name=head options=$arrHeadSelect selected=$data.head}-->
+		</td>
+	</tr>
+	<!-- /HEAD -->
+	<!-- BODY -->
+	<tr bgcolor="#BBBBBB">
+		<td>
+			胴
+		</td>
+		<td>
+			<!--{html_options name=body options=$arrBodySelect selected=$data.body class=select}-->
+		</td>
+	</tr>
+	<!-- /BODY -->
+	<!-- ARM -->
+	<tr bgcolor="#BBBBBB">
+		<td>
+			腕
+		</td>
+		<td>
+			<!--{html_options name=arm options=$arrArmSelect selected=$data.arm class=select}-->
+		</td>
+	</tr>
+	<!-- /ARM -->
+	<!-- LEG -->
+	<tr bgcolor="#BBBBBB">
+		<td>
+			脚
+		</td>
+		<td>
+			<!--{html_options name=leg options=$arrLegSelect selected=$data.leg class=select}-->
+		</td>
+	</tr>
+	<!-- /LEG -->
+<!-- /TABLE parts -->
+<!-- Assault_Main -->
+	<tr bgcolor="#99FFCC">
+		<td>
+			主
+		</td>
+		<td>
+			<!--{html_options name=assault_main options=$arrAssaultMainSelect selected=$data.assault_main class=select}-->
+		</td>
+	</tr>
+<!-- /Assault_Main -->
+<!-- Assault_Sub -->
+	<tr bgcolor="#99FFCC">
+		<td>
+			副
+		</td>
+		<td>
+			<!--{html_options name=assault_sub options=$arrAssaultSubSelect selected=$data.assault_sub class=select}-->
+		</td>
+	</tr>
+<!-- /Assault_Sub -->
+<!-- Assault_Assist -->
+	<tr bgcolor="#99FFCC">
+		<td>
+			補
+		</td>
+		<td>
+			<!--{html_options name=assault_assist options=$arrAssaultAssistSelect selected=$data.assault_assist class=select}-->
+		</td>
+	</tr>
+<!-- /Assault_Assist -->
+<!-- Assault_Special -->
+	<tr bgcolor="#99FFCC">
+		<td>
+			特
+		</td>
+		<td>
+			<!--{html_options name=assault_special options=$arrAssaultSpecialSelect selected=$data.assault_special class=select}-->
+		</td>
+	</tr>
+<!-- /Assault_Special -->
+<!-- Heavy_Main -->
+	<tr bgcolor="#FF99FF">
+		<td>
+			主
+		</td>
+		<td>
+			<!--{html_options name=heavy_main options=$arrHeavyMainSelect selected=$data.heavy_main class=select}-->
+		</td>
+	</tr>
+<!-- /Heavy_Main -->
+<!-- Heavy_Sub -->
+	<tr bgcolor="#FF99FF">
+		<td>
+			副
+		</td>
+		<td>
+			<!--{html_options name=heavy_sub options=$arrHeavySubSelect selected=$data.heavy_sub class=select}-->
+		</td>
+	</tr>
+<!-- /Heavy_Sub -->
+<!-- Heavy_Assist -->
+	<tr bgcolor="#FF99FF">
+		<td>
+			補
+		</td>
+		<td>
+			<!--{html_options name=heavy_assist options=$arrHeavyAssistSelect selected=$data.heavy_assist class=select}-->
+		</td>
+	</tr>
+<!-- /Heavy_Assist -->
+<!-- Heavy_Special -->
+	<tr bgcolor="#FF99FF">
+		<td>
+			特
+		</td>
+		<td>
+			<!--{html_options name=heavy_special options=$arrHeavySpecialSelect selected=$data.heavy_special class=select}-->
+		</td>
+	</tr>
+<!-- /Heavy_Special -->
+<!-- Snipe_Main -->
+	<tr bgcolor="#FFFF99">
+		<td>
+			主
+		</td>
+		<td>
+			<!--{html_options name=snipe_main options=$arrSnipeMainSelect selected=$data.snipe_main class=select}-->
+		</td>
+	</tr>
+<!-- /Snipe_Main -->
+<!-- Snipe_Sub -->
+	<tr bgcolor="#FFFF99">
+		<td>
+			副
+		</td>
+		<td>
+			<!--{html_options name=snipe_sub options=$arrSnipeSubSelect selected=$data.snipe_sub class=select}-->
+		</td>
+	</tr>
+<!-- /Snipe_Sub -->
+<!-- Snipe_Assist -->
+	<tr bgcolor="#FFFF99">
+		<td>
+			補
+		</td>
+		<td>
+			<!--{html_options name=snipe_assist options=$arrSnipeAssistSelect selected=$data.snipe_assist class=select}-->
+		</td>
+	</tr>
+<!-- /Snipe_Assist -->
+<!-- Snipe_Special -->
+	<tr bgcolor="#FFFF99">
+		<td>
+			特
+		</td>
+		<td>
+			<!--{html_options name=snipe_special options=$arrSnipeSpecialSelect selected=$data.snipe_special class=select}-->
+		</td>
+	</tr>
+<!-- /Snipe_Special -->
+<!-- Support_Main -->
+	<tr bgcolor="#33FF99">
+		<td>
+			主
+		</td>
+		<td>
+			<!--{html_options name=support_main options=$arrSupportMainSelect selected=$data.support_main class=select}-->
+		</td>
+	</tr>
+<!-- /Support_Main -->
+<!-- Support_Sub -->
+	<tr bgcolor="#33FF99">
+		<td>
+			副
+		</td>
+		<td>
+			<!--{html_options name=support_sub options=$arrSupportSubSelect selected=$data.support_sub class=select}-->
+		</td>
+	</tr>
+<!-- /Support_Sub -->
+<!-- Support_Assist -->
+	<tr bgcolor="#33FF99">
+		<td>
+			補
+		</td>
+		<td>
+			<!--{html_options name=support_assist options=$arrSupportAssistSelect selected=$data.support_assist class=select}-->
+		</td>
+	</tr>
+<!-- /Support_Assist -->
+<!-- Support_Special -->
+	<tr bgcolor="#33FF99">
+		<td>
+			特
+		</td>
+		<td>
+			<!--{html_options name=support_special options=$arrSupportSpecialSelect selected=$data.support_special class=select}-->
+		</td>
+	</tr>
+<!-- /Support_Special -->
+</table>
+<!-- /TABLE user_select_space -->
+	<input type="submit" name="submit_res" value="再表示" />
+	<input type="submit" name="submit_res" value="チップ選択へ" />
+</form>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Type" content="text/html; charset=shift-jis">
+<title>BBシミュレートver1.00-α(mobile)</title>
+</head>
+<body>
+<form action="/set/set_mobile.php" method="post" name="form1">
+<input type="hidden" name="mode" value="edit1" />
+<table border="0" cellpadding="0" cellspacing="0" summary="user_select_space">
+	<!-- HEAD -->
+	<tr bgcolor="#BBBBBB">
+		<td width="20">
+			頭：
+		</td>
+		<td width="100">
+			<!--{html_options name=head options=$arrHeadSelect selected=$data.head class=select}-->
+		</td>
+	</tr>
+	<!-- /HEAD -->
+	<!-- BODY -->
+	<tr bgcolor="#BBBBBB">
+		<td>
+			胴：
+		</td>
+		<td>
+			<!--{html_options name=body options=$arrBodySelect selected=$data.body class=select}-->
+		</td>
+	</tr>
+	<!-- /BODY -->
+	<!-- ARM -->
+	<tr bgcolor="#BBBBBB">
+		<td>
+			腕：
+		</td>
+		<td>
+			<!--{html_options name=arm options=$arrArmSelect selected=$data.arm class=select}-->
+		</td>
+	</tr>
+	<!-- /ARM -->
+	<!-- LEG -->
+	<tr bgcolor="#BBBBBB">
+		<td>
+			脚：
+		</td>
+		<td>
+			<!--{html_options name=leg options=$arrLegSelect selected=$data.leg class=select}-->
+		</td>
+	</tr>
+	<!-- /LEG -->
+<!-- /TABLE parts -->
+<!-- Assault_Main -->
+	<tr bgcolor="#99FFCC">
+		<td>
+			主：
+		</td>
+		<td>
+			<!--{html_options name=assault_main options=$arrAssaultMainSelect selected=$data.assault_main class=select}-->
+		</td>
+	</tr>
+<!-- /Assault_Main -->
+<!-- Assault_Sub -->
+	<tr bgcolor="#99FFCC">
+		<td>
+			副：
+		</td>
+		<td>
+			<!--{html_options name=assault_sub options=$arrAssaultSubSelect selected=$data.assault_sub class=select}-->
+		</td>
+	</tr>
+<!-- /Assault_Sub -->
+<!-- Assault_Assist -->
+	<tr bgcolor="#99FFCC">
+		<td>
+			補：
+		</td>
+		<td>
+			<!--{html_options name=assault_assist options=$arrAssaultAssistSelect selected=$data.assault_assist class=select}-->
+		</td>
+	</tr>
+<!-- /Assault_Assist -->
+<!-- Assault_Special -->
+	<tr bgcolor="#99FFCC">
+		<td>
+			特：
+		</td>
+		<td>
+			<!--{html_options name=assault_special options=$arrAssaultSpecialSelect selected=$data.assault_special class=select}-->
+		</td>
+	</tr>
+<!-- /Assault_Special -->
+<!-- Heavy_Main -->
+	<tr bgcolor="FF99FF">
+		<td>
+			主：
+		</td>
+		<td>
+			<!--{html_options name=heavy_main options=$arrHeavyMainSelect selected=$data.heavy_main class=select}-->
+		</td>
+	</tr>
+<!-- /Heavy_Main -->
+<!-- Heavy_Sub -->
+	<tr bgcolor="FF99FF">
+		<td>
+			副：
+		</td>
+		<td>
+			<!--{html_options name=heavy_sub options=$arrHeavySubSelect selected=$data.heavy_sub class=select}-->
+		</td>
+	</tr>
+<!-- /Heavy_Sub -->
+<!-- Heavy_Assist -->
+	<tr bgcolor="FF99FF">
+		<td>
+			補：
+		</td>
+		<td>
+			<!--{html_options name=heavy_assist options=$arrHeavyAssistSelect selected=$data.heavy_assist class=select}-->
+		</td>
+	</tr>
+<!-- /Heavy_Assist -->
+<!-- Heavy_Special -->
+	<tr bgcolor="FF99FF">
+		<td>
+			特：
+		</td>
+		<td>
+			<!--{html_options name=heavy_special options=$arrHeavySpecialSelect selected=$data.heavy_special class=select}-->
+		</td>
+	</tr>
+<!-- /Heavy_Special -->
+<!-- Snipe_Main -->
+	<tr bgcolor="#FFFF99">
+		<td>
+			主：
+		</td>
+		<td>
+			<!--{html_options name=snipe_main options=$arrSnipeMainSelect selected=$data.snipe_main class=select}-->
+		</td>
+	</tr>
+<!-- /Snipe_Main -->
+<!-- Snipe_Sub -->
+	<tr bgcolor="#FFFF99">
+		<td>
+			副：
+		</td>
+		<td>
+			<!--{html_options name=snipe_sub options=$arrSnipeSubSelect selected=$data.snipe_sub class=select}-->
+		</td>
+	</tr>
+<!-- /Snipe_Sub -->
+<!-- Snipe_Assist -->
+	<tr bgcolor="#FFFF99">
+		<td>
+			補：
+		</td>
+		<td>
+			<!--{html_options name=snipe_assist options=$arrSnipeAssistSelect selected=$data.snipe_assist class=select}-->
+		</td>
+	</tr>
+<!-- /Snipe_Assist -->
+<!-- Snipe_Special -->
+	<tr bgcolor="#FFFF99">
+		<td>
+			特：
+		</td>
+		<td>
+			<!--{html_options name=snipe_special options=$arrSnipeSpecialSelect selected=$data.snipe_special class=select}-->
+		</td>
+	</tr>
+<!-- /Snipe_Special -->
+<!-- Support_Main -->
+	<tr bgcolor="#33FF99">
+		<td>
+			主：
+		</td>
+		<td>
+			<!--{html_options name=support_main options=$arrSupportMainSelect selected=$data.support_main class=select}-->
+		</td>
+	</tr>
+<!-- /Support_Main -->
+<!-- Support_Sub -->
+	<tr bgcolor="#33FF99">
+		<td>
+			副：
+		</td>
+		<td>
+			<!--{html_options name=support_sub options=$arrSupportSubSelect selected=$data.support_sub class=select}-->
+		</td>
+	</tr>
+<!-- /Support_Sub -->
+<!-- Support_Assist -->
+	<tr bgcolor="#33FF99">
+		<td>
+			補：
+		</td>
+		<td>
+			<!--{html_options name=support_assist options=$arrSupportAssistSelect selected=$data.support_assist class=select}-->
+		</td>
+	</tr>
+<!-- /Support_Assist -->
+<!-- Support_Special -->
+	<tr bgcolor="#33FF99">
+		<td>
+			特：
+		</td>
+		<td>
+			<!--{html_options name=support_special options=$arrSupportSpecialSelect selected=$data.support_special class=select}-->
+		</td>
+	</tr>
+<!-- /Support_Special -->
+</tr>
+
+</table>
+<!-- /TABLE user_select_space -->
+</form>
+
+</body>
+</html>

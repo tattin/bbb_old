@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Language" content="ja" />
+<meta http-equiv="Content-Type" content="text/html; charset=shift-jis">
+<title>BBシミュレートver1.00-α</title>
+
+</head>
+<body>
+<form action="/set/set_mobile.php" method="post" name="form1">
+<input type="hidden" name="mode" value="chip" />
+<!--{foreach from=$data key=key item=val}-->
+	<input type="hidden" name="<!--{$key}-->" value="<!--{$val}-->" />
+<!--{/foreach}-->
+<table border="0" cellpadding="0" cellspacing="0" summary="user_select_space">
+<tr bgcolor="#BBBBBB">
+	<td width="20">装：</td>
+	<td>
+		<select class="select" name="armer_chip">
+			<option value="">----</option>
+			<option value="1" <!--{if $data.armer_chip==1}-->selected<!--{/if}--> >コスト１</option>
+			<option value="2" <!--{if $data.armer_chip==2}-->selected<!--{/if}--> >コスト２</option>
+		</select>
+	</td>
+</tr>
+<tr bgcolor="#BBBBBB">
+	<td width="20">射：</td>
+	<td width="100">
+		<select class="select" name="revision_chip">
+			<option value="">----</option>
+			<option value="1" <!--{if $data.revision_chip==1}-->selected<!--{/if}--> >コスト１</option>
+			<option value="3" <!--{if $data.revision_chip==3}-->selected<!--{/if}--> >コスト３</option>
+		</select>
+	</td>
+</tr>
+<tr bgcolor="#BBBBBB">
+	<td width="20">SP：</td>
+	<td width="100">
+		<select class="select" name="sp_chip">
+			<option value="">----</option>
+			<option value="1" <!--{if $data.sp_chip==1}-->selected<!--{/if}--> >コスト１</option>
+			<option value="3" <!--{if $data.sp_chip==3}-->selected<!--{/if}--> >コスト３</option>
+		</select>
+	</td>
+</tr>
+<tr bgcolor="#BBBBBB">
+	<td width="20">武：</td>
+	<td width="100">
+		<select class="select" name="change_chip">
+			<option value="">----</option>
+			<option value="1" <!--{if $data.change_chip==1}-->selected<!--{/if}--> >コスト１</option>
+			<option value="3" <!--{if $data.change_chip==3}-->selected<!--{/if}--> >コスト３</option>
+		</select>
+	</td>
+</tr>
+<tr bgcolor="#BBBBBB">
+	<td width="20">重：</td>
+	<td width="100">
+		<select class="select" name="weight_chip">
+			<option value="">----</option>
+			<option value="1" <!--{if $data.weight_chip==1}-->selected<!--{/if}--> >コスト１</option>
+			<option value="3" <!--{if $data.weight_chip==3}-->selected<!--{/if}--> >コスト３</option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+		<input type="submit" value="性能を表示" />
+	</td>
+</tr>
+</table>
+<!-- /TABLE user_select_space -->
+</form>
+
+</body>
+</html>
